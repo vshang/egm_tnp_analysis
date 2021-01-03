@@ -3,9 +3,9 @@
 #############################################################
 # flag to be Tested
 flags = {
-    'passEleTriggers2018' : '(passEleTriggers2018 == 1)'
+    'passEleTriggers2018' : '( (passHltEle32WPTightGsf == 1) ||  (passHltPhoton200 == 1) || (passHltEle115CaloIdVTGsfTrkIdT == 1) )'
     }
-baseOutDir = 'results/test/'
+baseOutDir = 'results/eleTrigger2018/'
 
 #############################################################
 ########## samples definition  - preparing the samples
@@ -17,9 +17,9 @@ tnpTreeDir = 'tnpEleTrig'
 
 samplesDef = {
     'data'   : tnpSamples.samples2018['data_Run2018A'].clone(),
-    'mcNom'  : tnpSamples.samples2018['DY_NLO'].clone(),
+    'mcNom'  : tnpSamples.samples2018['DY_LO'].clone(),
     'mcAlt'  : tnpSamples.samples2018['DY_NLO'].clone(),
-    'tagSel' : tnpSamples.samples2018['DY_NLO'].clone(),
+    'tagSel' : None, #tnpSamples.samples2018['DY_NLO'].clone(),
 }
 ## can add data sample easily
 samplesDef['data'].add_sample( tnpSamples.samples2018['data_Run2018B'] )
@@ -46,14 +46,14 @@ if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_weight(weightName)
 #############################################################
 biningDef = [
    { 'var' : 'el_sc_eta' , 'type': 'float', 'bins': [-2.5,-2.0,-1.566,-1.4442, -0.8, 0.0, 0.8, 1.4442, 1.566, 2.0, 2.5] },
-   { 'var' : 'el_pt' , 'type': 'float', 'bins': [10,20.0,30,40,50,200] },
+    { 'var' : 'el_pt' , 'type': 'float', 'bins': [35,50,70,100,150,200,500] },
 ]
 
 #############################################################
 ########## Cuts definition for all samples
 #############################################################
 ### cut
-cutBase   = 'tag_Ele_pt > 30 && abs(tag_sc_eta) < 2.1 && el_q*tag_Ele_q < 0'
+cutBase   = 'tag_Ele_pt > 35 && abs(tag_sc_eta) < 2.1 && el_q*tag_Ele_q < 0'
 
 # can add addtionnal cuts for some bins (first check bin number using tnpEGM --checkBins)
 # additionalCuts = { 
