@@ -4,9 +4,9 @@
 # flag to be Tested
 flags = {
     'passEleTriggers2017' : '( ( (passHltEl327WPTightGsfL1DoubleEG == 1) && (passHltEGL1SingleEG == 1) ) ||  (passHltPhoton200 == 1) || (passHltEle115CaloIdVTGsfTrkIdT == 1) )'
-    
+    #'passEleTriggers2017' : '( (passHltEl327WPTightGsfL1DoubleEG == 1) && (passHltEGL1SingleEG == 1) )'
     }
-baseOutDir = 'results/eleTriggers/'
+baseOutDir = 'results/eleTriggersv3/'
 
 #############################################################
 ########## samples definition  - preparing the samples
@@ -18,11 +18,20 @@ tnpTreeDir = 'tnpEleTrig'
 
 samplesDef = {
     'data'   : tnpSamples.samples2017['data_Run2017B'].clone(),
-    'mcNom'  : tnpSamples.samples2017['DY_LO'].clone(),
+    'mcNom'  : tnpSamples.samples2017['DY1_LO'].clone(),
     'mcAlt'  : tnpSamples.samples2017['DY_NLO'].clone(),
     'tagSel' : None, #tnpSamples.samples2017['DY_NLO'].clone(),
 }
 ## can add data sample easily
+# samplesDef['mcNom'].add_sample( tnpSamples.samples2017['DY_LO_HT200to400'] )
+# samplesDef['mcNom'].add_sample( tnpSamples.samples2017['DY_LO_HT400to600'] )
+# samplesDef['mcNom'].add_sample( tnpSamples.samples2017['DY_LO_HT600to800'] )
+# samplesDef['mcNom'].add_sample( tnpSamples.samples2017['DY_LO_HT800to1200'] )
+# samplesDef['mcNom'].add_sample( tnpSamples.samples2017['DY_LO_HT1200to2500'] )
+# samplesDef['mcNom'].add_sample( tnpSamples.samples2017['DY_LO_HT2500toInf'] )
+samplesDef['mcNom'].add_sample( tnpSamples.samples2017['DY2_LO'] )
+samplesDef['mcNom'].add_sample( tnpSamples.samples2017['DY3_LO'] )
+samplesDef['mcNom'].add_sample( tnpSamples.samples2017['DY4_LO'] )
 samplesDef['data'].add_sample( tnpSamples.samples2017['data_Run2017C'] )
 samplesDef['data'].add_sample( tnpSamples.samples2017['data_Run2017D'] )
 samplesDef['data'].add_sample( tnpSamples.samples2017['data_Run2017E'] )

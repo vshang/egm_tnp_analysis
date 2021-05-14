@@ -3,8 +3,8 @@
 script=$1
 flags=(
     #"passEleTriggers2016" 
-    #"passEleTriggers2017" 
-    "passEleTriggers2018"
+    "passEleTriggers2017" 
+    #"passEleTriggers2018"
     
 )
 
